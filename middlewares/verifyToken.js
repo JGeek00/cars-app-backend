@@ -3,6 +3,7 @@ const User = require('../models/User');
 
 async function verifyToken(req, res, next) {
     const token = req.headers['x-access-token'];
+    console.log(token);,
     if (!token) {
         res.status(401).json({
             result: 'fail',
