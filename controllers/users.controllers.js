@@ -156,19 +156,23 @@ usersCtrl.userInfo = async (req, res) => {
 
 usersCtrl.login = async (req, res) => {
     const {username, password} = req.body;
-    const user = await User.findOne({username: username});
-    if (user) {
-        const valPassword = await user.validatePassword(password, user.password);
-        if (valPassword) {
-            const token = await jwt.sign({id: user._id}, process.env.AUTH_KEY, {expiresIn: 60*60*24});
-            res.send({result: "success", userData: user, token: token});
+    try {
+        const user = await User.findOne({username: username});
+        if (user) {
+            const valPassword = await user.validatePassword(password, user.password);
+            if (valPassword) {
+                const token = await jwt.sign({id: user._id}, process.env.AUTH_KEY, {expiresIn: 60*60*24});
+                res.send({result: "success", userData: user, token: token});
+            }
+            else {
+                res.send({result: "fail", message: "password-not-match"});
+            }
         }
         else {
-            res.send({result: "fail", message: "password-not-match"});
+            res.status(400).json({result: "fail", message: "Username doesn't exist"});
         }
-    }
-    else {
-        res.status(400).json({result: "fail", message: "Username doesn't exist"});
+    } catch (error) {
+        res.status(400).json({result: "fail", message: error});
     }
 }
 
