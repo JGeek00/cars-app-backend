@@ -158,6 +158,7 @@ usersCtrl.login = async (req, res) => {
     const {username, password} = req.body;
     try {
         const user = await User.findOne({username: username});
+        console.log("user", user);
         if (user) {
             const valPassword = await user.validatePassword(password, user.password);
             if (valPassword) {
