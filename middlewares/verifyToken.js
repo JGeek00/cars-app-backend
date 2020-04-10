@@ -12,7 +12,6 @@ async function verifyToken(req, res, next) {
     else {
         try {
             const decoded = jwt.verify(token, process.env.AUTH_KEY);
-            console.log("token decoded",decoded);
             try {
                 const userExists = await User.findById(decoded.id);
                 console.log("user",userExists);
@@ -27,6 +26,7 @@ async function verifyToken(req, res, next) {
                     });
                 }
             } catch (error) {
+                console.log("database error",error);
                 res.status(401).json({
                     result: 'fail',
                     message: 'no-token'
