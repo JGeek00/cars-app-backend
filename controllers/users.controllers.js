@@ -157,6 +157,8 @@ usersCtrl.userInfo = async (req, res) => {
 usersCtrl.login = async (req, res) => {
     const {username, password} = req.body;
     try {
+        const users = await User.find();
+        console.log(users);
         const user = await User.findOne({username: username});
         console.log("user", user);
         if (user) {
