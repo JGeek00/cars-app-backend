@@ -16,9 +16,9 @@ server.use(session({
     resave: false,
     saveUninitialized: false
 }));
-console.log(proccess.env.MONGODB_URI);
-console.log(proccess.env.PORT);
-console.log(proccess.env.AUTH_KEY);
+console.log(process.env.MONGODB_URI);
+console.log(process.env.PORT);
+console.log(process.env.AUTH_KEY);
 
 
 //Routes
