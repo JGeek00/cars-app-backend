@@ -13,8 +13,10 @@ async function verifyToken(req, res, next) {
     else {
         try {
             const decoded = jwt.verify(token, process.env.AUTH_KEY);
+            console.log(decoded);
             try {
                 const userExists = await User.findById(decoded.id);
+                console.log(userExists);
                 if (userExists) {
                     req.user_token_id = decoded;
                     next();
