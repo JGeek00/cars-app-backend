@@ -13,5 +13,5 @@ mongoose.connect(uri, {
 const connection = mongoose.connection;
 
 connection.once('open', function () {
-    console.log("Database running");
+    console.log("Database running on " + uri);
 })
