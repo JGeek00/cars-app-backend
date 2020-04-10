@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv').config();
 
-const uri = process.env.MONGODB_URI
-    ? process.env.MONGODB_URI
-    : 'mongodb://localhost/cars-app';
+const uri = process.env.MONGODB_URI;
 
 mongoose.connect(uri, {
     useNewUrlParser: true,

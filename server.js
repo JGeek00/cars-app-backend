@@ -1,17 +1,18 @@
 const express = require('express');
 const server = express();
 const session = require('express-session');
+const dotenv = require('dotenv').config();
 
 const cors = require('cors');
 
 //Settings
-server.set('port', process.env.PORT || 4000);
+server.set('port', process.env.PORT || 3000);
 
 //Middlewares
 server.use(cors());
 server.use(express.json());
 server.use(session({
-    secret: "cars-app",
+    secret: process.env.AUTH_KEY,
     resave: false,
     saveUninitialized: false
 }));
