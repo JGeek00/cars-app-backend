@@ -157,14 +157,12 @@ usersCtrl.userInfo = async (req, res) => {
 usersCtrl.login = async (req, res) => {
     const {username, password} = req.body;
     try {
-        const users = await User.find();
-        console.log(users);
         const user = await User.findOne({username: username});
-        console.log("user", user);
         if (user) {
             const valPassword = await user.validatePassword(password, user.password);
             if (valPassword) {
                 const token = await jwt.sign({id: user._id}, process.env.AUTH_KEY, {expiresIn: 60*60*24});
+                console.log(token);
                 res.send({result: "success", userData: user, token: token});
             }
             else {
