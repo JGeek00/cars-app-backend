@@ -3,7 +3,6 @@ const User = require('../models/User');
 
 async function verifyToken(req, res, next) {
     const token = req.headers['x-access-token'];
-    console.log(token);
     if (!token) {
         res.status(401).json({
             result: 'fail',
@@ -13,10 +12,10 @@ async function verifyToken(req, res, next) {
     else {
         try {
             const decoded = jwt.verify(token, process.env.AUTH_KEY);
-            console.log(decoded);
+            console.log("token decoded",decoded);
             try {
                 const userExists = await User.findById(decoded.id);
-                console.log(userExists);
+                console.log("user",userExists);
                 if (userExists) {
                     req.user_token_id = decoded;
                     next();
