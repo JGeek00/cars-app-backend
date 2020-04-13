@@ -16,10 +16,6 @@ server.use(session({
     resave: false,
     saveUninitialized: false
 }));
-console.log(process.env.MONGODB_URI);
-console.log(process.env.PORT);
-console.log(process.env.AUTH_KEY);
-
 
 //Routes
 server.use('/api/cars', require('./routes/cars'));

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "start.js",
+  "homepage": ".",
   "scripts": {
     "start": "node start.js"
   },
