@@ -30,12 +30,16 @@ carsCtrl.createCar = async (req, res) => {
         const {model, brand} = req.body;
         const car = new Car({
             model: model,
-            brand: brand
+            brand: brand,
+            creationDate: new Date()
         });
         try {
-            const created = await car.save();
+            const created = await car.save();   
             if (created) {
-                res.json({result: "success"});
+                res.json({
+                    result: "success",
+                    id: created._id
+                });
             }
             else {
                 res.status(400).json({result: "fail"});

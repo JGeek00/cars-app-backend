@@ -9,6 +9,10 @@ const carSchema = new Schema({
     model: {
         type: String,
         required: true
+    },
+    creationDate: {
+        type: Date,
+        required: true
     }
 });
 
