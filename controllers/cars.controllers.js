@@ -38,7 +38,8 @@ carsCtrl.createCar = async (req, res) => {
             if (created) {
                 res.json({
                     result: "success",
-                    id: created._id
+                    id: created._id,
+                    creationDate: created.creationDate
                 });
             }
             else {
