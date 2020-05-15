@@ -27,7 +27,10 @@ brandsCtrl.createBrand = async (req, res) => {
         try {
             const send = await brand.save();
             if (send) {
-                res.json({result: "success"});
+                res.json({
+                    result: "success",
+                    id: send._id
+                });
             }
             else {
                 res.code(400).json({result: "fail"});
